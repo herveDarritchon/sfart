@@ -1,8 +1,11 @@
 #Sfart : Semantic Field Automatic Read & Transform
 
-Sfart est un outil qui permettra de prendre en entrée un texte libre (sans doute de quelques lignes, le nombre de lignes est à décider) et de générer un nuage de mots.
-Pour ce faire, outre le texte en entrée Sfart va utiliser quelques ressources afin de construire un « dictionnaire » qui va permettre de traiter le texte initial passé en paramètre.
-Pour construire le « dictionnnaire », je fais appel à 2 sites webs que je vais scrapper - rimessolides.com & lerobert.com - Le premier site (rimessolides) va permettre de réucpérer un champ lexical par rapport à un mot clé comme par exemple (https://www.rimessolides.com/motscles.aspx?m=marais). Le deuxième site (https://dictionnaire.lerobert.com/definition/marais) va permettre de récupérer la nature du mot et sa définition.
+**Sfart** est un outil qui permettra de prendre en entrée un texte libre (sans doute de quelques lignes, le nombre de lignes est à décider) et de générer un nuage de mots.
+Pour ce faire, outre le texte en entrée **Sfart** va utiliser quelques ressources afin de construire un « dictionnaire » qui va permettre de traiter le texte initial passé en paramètre.  
+
+Pour construire le « dictionnaire », je fais appel à 2 sites webs que je vais scrapper - rimessolides.com & lerobert.com.  
+Le premier site (rimessolides) va permettre de récupérer un champ lexical par rapport à un mot clé comme (https://www.rimessolides.com/motscles.aspx?m=marais).  
+Le deuxième site (https://dictionnaire.lerobert.com/definition/marais) va permettre de récupérer la nature du mot et sa définition.
 
 A partir de ce « dictionnaire » custom, on va créer un graphe (stocké dans Neo4J) que l’utilisera pour calculer le nuage de mots en utilisant un texte comme source et en le croisant avec le graphe.
 
