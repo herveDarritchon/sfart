@@ -1,6 +1,9 @@
 val ktor_version: String by project
 val kotlin_version: String by project
 val logback_version: String by project
+val neo4j_version: String by project
+val skrapeit_version: String by project
+val jsoup_version: String by project
 
 plugins {
     application
@@ -41,10 +44,13 @@ dependencies {
     //testImplementation("io.ktor:ktor-server-tests-jvm:$ktor_version")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
 
-    implementation("it.skrape:skrapeit:1.2.1")
+    implementation("it.skrape:skrapeit:$skrapeit_version")
     //implementation("it.skrape:skrapeit-ktor-extension:1.2.1")
 
-    implementation("org.neo4j:neo4j-jdbc-driver:4.0.2")
+    implementation("org.neo4j:neo4j-jdbc-driver:$neo4j_version")
+
+    // jsoup HTML parser library @ https://jsoup.org/
+    implementation("org.jsoup:jsoup:$jsoup_version")
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {

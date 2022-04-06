@@ -17,5 +17,8 @@ data class Type(val name: String) {
     data class List(val type: Type, val page: Int)
 }
 
-@Location("/scrape-it/{word}")
-data class ScrapeLocation(val word: String, val depth: Int = 1)
+@Location("/scrape-it/rimessolides/{word}")
+data class RimesSolidesScrapeLocation(val word: String, val depth: Int = 1)
+
+@Location("/scrape-it/robert/{word}")
+data class RobertScrapeLocation(val word: String, val depth: Int = 1)

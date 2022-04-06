@@ -1,9 +1,9 @@
-package sfart.semanticfield.hervedarritchon.fr.infrastructure.api
+package sfart.semanticfield.hervedarritchon.fr.infrastructure.scrapper.RimesSolides
 
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ScrapperResponse(
+data class RimesSolidesResponse(
     val httpStatusCode: Int,
     val httpStatusMessage: String,
     val key: String,

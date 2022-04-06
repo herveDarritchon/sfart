@@ -1,4 +1,4 @@
-package sfart.semanticfield.hervedarritchon.fr.infrastructure.scrapper
+package sfart.semanticfield.hervedarritchon.fr.infrastructure.scrapper.RimesSolides
 
 import it.skrape.core.document
 import it.skrape.fetcher.BrowserFetcher
@@ -6,11 +6,14 @@ import it.skrape.fetcher.response
 import it.skrape.fetcher.skrape
 import it.skrape.selects.html5.div
 import it.skrape.selects.html5.h1
-import sfart.semanticfield.hervedarritchon.fr.infrastructure.api.ScrapperResponse
+import org.slf4j.LoggerFactory
 
-class RimeSolidesScrapperEngine {
-
-    fun extract(word: String, depth: Int): ScrapperResponse {
+class RimesSolidesScrapperEngine {
+    companion object {
+        private val logger = LoggerFactory.getLogger(RimesSolidesScrapperEngine::class.java)
+    }
+    fun extract(word: String, depth: Int): RimesSolidesResponse {
+        logger.debug("parameters : word=$word / depth=$depth")
         val result = skrape(BrowserFetcher) { // <--- pass BrowserFetcher to include rendered JS
             request { url = "https://www.rimessolides.com/motscles.aspx?m=${word}" }
             response { this }
@@ -30,7 +33,7 @@ class RimeSolidesScrapperEngine {
                     }
                 }
             val keywords = keyTag.children { filter { it.hasClass("motcle") } }.map { it.text }
-            ScrapperResponse(
+            RimesSolidesResponse(
                 httpStatusCode = status { code },
                 httpStatusMessage = status { message },
                 key = title.split("\"")[1],

@@ -15,8 +15,8 @@ import io.ktor.server.response.respond
 import io.ktor.server.response.respondText
 import io.ktor.server.routing.get
 import io.ktor.server.routing.routing
-import sfart.semanticfield.hervedarritchon.fr.domain.SemanticField
-import sfart.semanticfield.hervedarritchon.fr.infrastructure.scrapper.RimeSolidesScrapperEngine
+import sfart.semanticfield.hervedarritchon.fr.infrastructure.scrapper.RimesSolides.RimesSolidesScrapperEngine
+import sfart.semanticfield.hervedarritchon.fr.infrastructure.scrapper.robert.RobertScrapperEngine
 import sfart.semanticfield.hervedarritchon.fr.plugins.AuthenticationException
 import sfart.semanticfield.hervedarritchon.fr.plugins.AuthorizationException
 
@@ -35,9 +35,14 @@ fun Application.applicationRouting() {
         get<Type.List> {
             call.respondText("Inside $it")
         }
-        get<ScrapeLocation> { scrape ->
-            val semanticField = RimeSolidesScrapperEngine().extract(scrape.word, scrape.depth)
-            SemanticField(key = semanticField.key, keywords = semanticField.keywords, depth = semanticField.depth)
+        get<RimesSolidesScrapeLocation> { scrape ->
+            val semanticField = RimesSolidesScrapperEngine().extract(scrape.word, scrape.depth)
+            //SemanticField(key = semanticField.key, keywords = semanticField.keywords, depth = semanticField.depth)
+            call.respond(semanticField)
+        }
+        get<RobertScrapeLocation> { scrape ->
+            val semanticField = RobertScrapperEngine().extract(scrape.word, scrape.depth)
+            //SemanticField(key = semanticField.key, keywords = semanticField.keywords, depth = semanticField.depth)
             call.respond(semanticField)
         }
         // Static plugin. Try to access `/static/index.html`
